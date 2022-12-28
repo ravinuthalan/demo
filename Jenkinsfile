@@ -1,6 +1,7 @@
-properties([pipelineTriggers([githubPush()])])
+// properties([pipelineTriggers([githubPush()])])
 
 node {
+        properties([pipelineTriggers([[$class: 'GitHubPushTrigger'], pollSCM('* * * * *')])])
         git url: 'https://github.com/nravinuthala/demo.git',branch: 'master'
         stage ('Compile Stage') {
 
