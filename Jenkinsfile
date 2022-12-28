@@ -17,5 +17,5 @@ node {
         stage("Deploy") {
 
                 echo "deployment completed"
-                        }
+        }
 }
