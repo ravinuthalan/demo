@@ -15,7 +15,6 @@ node {
             echo "testing completed"
         }
         stage("Deploy") {
-
                 echo "deployment completed"
         }
 }
