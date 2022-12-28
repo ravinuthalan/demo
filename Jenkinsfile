@@ -1,7 +1,7 @@
 properties([pipelineTriggers([githubPush()])])
 
 node {
-        git url: 'https://github.com/sebin-vincent/Treasure_Hunt.git',branch: 'master'
+        git url: 'https://github.com/nravinuthala/demo.git',branch: 'master'
         stage ('Compile Stage') {
 
             echo "compiling"
