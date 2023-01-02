@@ -16,8 +16,7 @@ pipeline {
         stage ('Docker Build'){
             steps {
                 script {
-                    def dockerfile = 'Dockerfile'
-                    docker.build("nravinuthala/myapp:${TAG}", "-f ./${dockerfile}")
+                    docker.build("nravinuthala/myapp:${TAG}")
                 }
             }
         }
