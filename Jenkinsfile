@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage ('Build') {
             steps {
-                echo "Steps to check out the code from repo and build will come here...."
+                echo "Steps to check out the code from repo and build will come here..."
             }
         }
         stage ('Test'){
