@@ -1,20 +1,33 @@
 pipeline {
     agent any
 
+    environment {
+        DATE = new Date().format('yy.M')
+        TAG = "${DATE}.${BUILD_NUMBER}"
+    }
+
     stages {
         stage ('Build') {
             steps {
-                echo "Steps to check out the code from repo and build will come here..."
+                echo "Command to check out code from github to come here"
+                echo "${TAG}"
             }
         }
-        stage ('Test'){
+        stage ('Docker Build'){
             steps {
-                echo "Steps to trigger the test scripts will come here..."
+                script {
+                    docker.build("nravinuthala/myapp:${TAG}")
+                }
             }
         }
-        stage ('Deploy'){
+        stage ('Pushing to Docker Hub'){
             steps {
-                echo "Steps to deploy the tested build onto servers will come here..."
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-creds'){
+                        docker.image("nravinuthala/myapp:${TAG}").push()
+                        docker.image("nravinuthala/myapp:${TAG}").push("latest")
+                    }
+                }
             }
         }
     }
